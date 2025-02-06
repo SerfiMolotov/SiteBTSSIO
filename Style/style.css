@@ -235,3 +235,65 @@ footer {
     background: #0056b3;
     transform: scale(1.05);
 }
+
+.tp-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.tp-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tp-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0,0,0,0.2);
+}
+
+.tp-card img {
+    width: 100px;
+    height: 100px;
+}
+
+.tp-card h2 {
+    font-size: 24px;
+    color: #222;
+    margin: 15px 0;
+}
+
+.tp-card p {
+    font-size: 16px;
+    color: #555;
+}
+
+.btn {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #ff5500;
+}
+
+/* ========== FOOTER ========== */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background: #333;
+    color: white;
+}
