@@ -4,9 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../Style/TP7.css">
-    <title>TP7</title>
+    <title>TP7 - Exercice 2.2</title>
 </head>
 <body>
-    
+    <div class="navbar"></div>
+    <h1>TP7 - Exercice 2.2</h1>
+    <p class="intro">Zoning de la page - Exercice 2.1.</p>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .haut {
+            background-color: red;
+            width: 100%;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px;
+        }
+
+        .gauche {
+            background-color: blue;
+            color: white;
+            width: 200px;
+            height: calc(100vh - 100px);
+            position: absolute;
+            top: 100px;
+            left: 0;
+            padding: 10px;
+        }
+
+        .milieu {
+            background-color: green;
+            position: absolute;
+            top: 100px;
+            left: 200px;
+            width: calc(100vw - 400px);
+            height: calc(100vh - 100px);
+            padding: 10px;
+        }
+
+        .droite {
+            background-color: rgb(129, 89, 14);
+            position: absolute;
+            top: 100px;
+            right: 0;
+            width: 200px;
+            height: calc(100vh - 100px);
+            padding: 10px;
+        }
+    </style>
+
+    <div class="container">
+        <div class="haut">Zone du Haut</div>
+        <div class="gauche">Zone de Gauche</div>
+        <div class="milieu">Zone du Milieu</div>
+        <div class="droite">Zone de Droite</div>
+    </div>
 </body>
 </html>

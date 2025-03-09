@@ -7,6 +7,46 @@
     <title>TP7</title>
 </head>
 <body>
-    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: grid;
+            grid-template-rows: auto 100px;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .gauche {
+            background-color: teal;
+            color: black;
+            display: flex;
+            align-items: start;
+            justify-content: start;
+            padding: 10px;
+        }
+
+        .droite {
+            background-color: purple;
+            color: black;
+            display: flex;
+            align-items: start;
+            justify-content: end;
+            padding: 10px;
+        }
+
+        .bas {
+            background-color: gold;
+            grid-column: span 2;
+            display: flex;
+            align-items: start;
+            justify-content: start;
+            padding: 10px;
+        }
+    </style>
+    <div class="gauche">gauche</div>
+    <div class="droite">droite</div>
+    <div class="bas">Bas</div>
 </body>
 </html>

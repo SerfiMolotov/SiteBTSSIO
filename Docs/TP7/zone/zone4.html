@@ -5,8 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../Style/TP7.css">
     <title>TP7</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: grid;
+            grid-template-rows: 60px 40px auto 60px;
+            grid-template-columns: 1fr;
+            gap: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f3f4;
+        }
+
+        .haut {
+            background-color: teal;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            padding: 10px;
+        }
+
+        .menu {
+            background-color: purple;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            padding: 10px;
+        }
+
+        .milieu {
+            background-color: gold;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 20px;
+            background-color: gold;
+            border: 10px solid white;
+        }
+
+        .bas {
+            background-color: teal;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="haut">Haut</div>
+    <div class="menu">Menu</div>
+    <div class="milieu">Milieu</div>
+    <div class="bas">Bas</div>
 </body>
 </html>
