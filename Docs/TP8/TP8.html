@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../Script/scriptTP8.js"></script>
+    <title>TP8</title>
+</head>
+<body>
+    <h2>Calcul du devis pour une dalle en béton</h2>
+    <label>Saisissez la surface</label>
+    <input type="number" id="surface" placeholder="Saisissez la surface"><br>
+    <label>Saisissez l'épaisseur</label>
+    <input type="number" id="epaisseur" placeholder="Saisissez l'épaisseur"><br>
+
+    <button onclick="calculDevis()">Calculer</button>
+    <h2>Résultat</h2>
+    <p>Volume de béton :<span id ="v_bet"></span></p>
+    <p id="qte_cim">Quantité de ciment :<span id ="qte_cim"></span></p>
+    <p id="nb_cami">Nombre de camions :</p>
+    <p id="prix_HTBET">Prix HT du béton :</p>
+    <p id="prix_totHT">Prix  total HT : </p>
+    <p id="prix_totTTC">Prix  total TTC : </p>
+</body>
+</html>
