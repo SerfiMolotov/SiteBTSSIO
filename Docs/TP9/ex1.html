@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP9 ex 1</title>
+    <style>
+        p{
+            background-color: rgb(99, 55, 141);
+        }
+    </style>
+</head>
+<body>
+    <p id="test" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit." >survol</p>
+    <div id="popup" style="display: none;">arfzerer</div>
+</body>
+<script>
+    document.getElementById("test").addEventListener("mouseover", function(event){
+        document.getElementById("popup").style.display = "block";
+        //document.getElementById("popup").innerHTML += " " + event.clientX;
+  
+        document.getElementById("test").addEventListener("mouseover", function(event){
+            document.getElementById("popup").innerHTML = event.clientX + "px";
+            document.getElementById("popup").innerHTML = event.clientY + "px";
+        });
+    });
+</script>
+</html>
