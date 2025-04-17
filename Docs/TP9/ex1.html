@@ -1,28 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TP9 ex 1</title>
-    <style>
-        p{
-            background-color: rgb(99, 55, 141);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercice : Définitions au survol</title>
+  <style>
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
+      background: #f9f9f9;
+    }
+    p {
+      margin-bottom: 1em;
+      text-align: justify;
+    }
+    .def {
+      color: #0066cc;
+      text-decoration: underline;
+      cursor: pointer;
+      position: relative;
+    }
+    .popup {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -110%);
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      z-index: 1000;
+    }
+    .popup h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #333;
+    }
+    .popup img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-top: 8px;
+      border-radius: 4px;
+    }
+        /* From Uiverse.io by sekaiking */ 
+button {
+  background-color: white;
+  color: black;
+  border-radius: 10em;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 1em 2em;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid black;
+  box-shadow: 0 0 0 0 black;
+}
+
+button:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 black;
+};
+
+button:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 black;
+};
+  </style>
 </head>
 <body>
-    <p id="test" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit." >survol</p>
-    <div id="popup" style="display: none;">arfzerer</div>
-</body>
-<script>
-    document.getElementById("test").addEventListener("mouseover", function(event){
-        document.getElementById("popup").style.display = "block";
-        //document.getElementById("popup").innerHTML += " " + event.clientX;
-  
-        document.getElementById("test").addEventListener("mouseover", function(event){
-            document.getElementById("popup").innerHTML = event.clientX + "px";
-            document.getElementById("popup").innerHTML = event.clientY + "px";
-        });
+    <button><a href="./TP9.html">
+        Retour
+    </a></button>
+  <h1>Texte avec définitions</h1>
+  <p>
+    Lorem ipsum dolor sit amet, <span class="def" data-key="ipsum">ipsum</span> consectetur adipiscing elit. Integer <span class="def" data-key="adipiscing">adipiscing</span> lacus vitae nibh <span class="def" data-key="pharetra">pharetra</span>, et pretium urna <span class="def" data-key="vehicula">vehicula</span>.
+  </p>
+  <p>
+    Vivamus <span class="def" data-key="vulputate">vulputate</span> erat non <span class="def" data-key="metus">metus</span> sollicitudin, nec <span class="def" data-key="tincidunt">tincidunt</span> purus molestie.
+  </p>
+
+  <script>
+    // Définitions : clé => { title, text, image? }
+    const definitions = new Map([
+      ['ipsum', { title: 'Ipsum', text: 'Mot latin signifiant « remplissage ». Utilisé pour simuler du contenu.', image: null }],
+      ['adipiscing', { title: 'Adipiscing', text: 'Participe présent du verbe latin « adipisci » signifiant « acquérir ».', image: null }],
+      ['pharetra', { title: 'Pharetra', text: 'Mèche ou carquois pour contenir des flèches.', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Quiver.jpg/220px-Quiver.jpg' }],
+      ['vehicula', { title: 'Vehicula', text: 'Moyen de transport en latin.', image: null }],
+      ['vulputate', { title: 'Vulputate', text: 'Terme latin pour « enroulement » ou « roulement ».', image: null }],
+      ['metus', { title: 'Metus', text: 'Peur ou crainte en latin.', image: null }],
+      ['tincidunt', { title: 'Tincidunt', text: 'Forme conjuguée de « tincere » signifiant « colorer ».', image: null }]
+    ]);
+
+    // Création et affichage du popup
+    function showPopup(evt) {
+      const key = evt.target.dataset.key;
+      const def = definitions.get(key);
+      if (!def) return;
+      const popup = document.createElement('div');
+      popup.className = 'popup';
+      // Titre
+      const h3 = document.createElement('h3'); h3.textContent = def.title;
+      popup.appendChild(h3);
+      // Texte
+      const txt = document.createElement('p'); txt.textContent = def.text;
+      popup.appendChild(txt);
+      // Image optionnelle
+      if (def.image) {
+        const img = document.createElement('img'); img.src = def.image;
+        popup.appendChild(img);
+      }
+      document.body.appendChild(popup);
+      // Positionner le popup au-dessus du mot
+      const rect = evt.target.getBoundingClientRect();
+      popup.style.left = (rect.left + rect.width / 2) + 'px';
+      popup.style.top = (rect.top + window.scrollY) + 'px';
+      // Masquer au clic en dehors
+      function removePopup(e) {
+        if (!popup.contains(e.target) && e.target !== evt.target) {
+          popup.remove();
+          document.removeEventListener('click', removePopup);
+        }
+      }
+      document.addEventListener('click', removePopup);
+    }
+
+    // Attacher gestionnaires
+    document.querySelectorAll('.def').forEach(el => {
+      el.addEventListener('click', showPopup);
+      el.addEventListener('mouseenter', showPopup);
+      el.addEventListener('mouseleave', () => {
+        document.querySelectorAll('.popup').forEach(p => p.remove());
+      });
     });
-</script>
+  </script>
+</body>
 </html>
