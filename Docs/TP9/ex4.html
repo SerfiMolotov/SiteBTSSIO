@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercice 4 – Calendrier Simple</title>
+  <style>
+    body { 
+        font-family: sans-serif; 
+        text-align: center; 
+        padding: 20px; 
+        background: #fafafa; 
+    }
+    .controle { 
+        margin-bottom: 15px; 
+    
+    }
+    select { 
+        margin: 0 5px; 
+        padding: 5px; 
+        border: 1px solid #333; 
+    }
+    table {
+         margin: 10px auto; 
+         border-collapse: collapse; 
+         width: 90%; 
+         max-width: 600px; 
+         background: #fff; 
+        }
+    th, td { 
+        border: 1px solid #666; 
+        width: 14%; 
+        padding: 10px; 
+    }
+    th { 
+        background: #333; 
+        color: #fff; 
+    }
+    td.empty { 
+        background: #eee; 
+    }
+    .btn-retour {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--text-light);
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      border: #333 solid 1px;
+    }
+    .btn-retour:hover {
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+<button class="btn-retour" onclick="history.back()">← Retour</button>
+  <h1>Mon calendrier</h1>
+  <div class="controle">
+    <label>1er jour
+      <select id="jourDebut"></select>
+    </label>
+    <label>Mois
+      <select id="mois"></select>
+    </label>
+    <label>Année
+      <select id="annee"></select>
+    </label>
+  </div>
+  <div id="calendrier"></div>
+
+  <script>
+    const selJour = document.getElementById('jourDebut');
+    const selMois = document.getElementById('mois');
+    const selAnnee = document.getElementById('annee');
+    ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'].forEach((j,i) => {
+      selJour.add(new Option(j, i+1));
+    });
+    ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'].forEach((m,i) => {
+      selMois.add(new Option(m, i+1));
+    });
+    for (let a = 2020; a <= 2030; a++) {
+      selAnnee.add(new Option(a,a));
+    }
+
+    function construireCalendrier() {
+      const jour1 = parseInt(selJour.value);
+      const mois = parseInt(selMois.value);
+      const annee = parseInt(selAnnee.value);
+      const nbJours = new Date(annee, mois, 0).getDate();
+      const joursSemaine = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+      let html = '<table><tr>';
+      joursSemaine.forEach(d => html += '<th>'+d+'</th>');
+      html += '</tr><tr>';
+
+      for (let i=1; i<jour1; i++) html += '<td class="empty"></td>';
+
+      for (let j=1; j<=nbJours; j++) {
+        if ((jour1 + j -1) % 7 === 1 && j>1) html += '</tr><tr>';
+        html += '<td>'+j+'</td>';
+      }
+      html += '</tr></table>';
+      document.getElementById('calendrier').innerHTML = html;
+    }
+
+    selJour.onchange = construireCalendrier;
+    selMois.onchange = construireCalendrier;
+    selAnnee.onchange = construireCalendrier;
+
+    construireCalendrier();
+  </script>
+</body>
+</html>
